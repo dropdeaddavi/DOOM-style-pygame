@@ -24,11 +24,11 @@ class Player:
             dx += -speed_cos
             dy += -speed_sin
         if keys[pygame.K_a]:
-            dx += -speed_cos
-            dy += speed_sin
-        if keys[pygame.K_d]:
             dx += speed_cos
             dy += -speed_sin
+        if keys[pygame.K_d]:
+            dx += -speed_cos
+            dy += speed_sin
 
         self.checkWallCollision(dx, dy)
 
@@ -50,9 +50,9 @@ class Player:
 
 
     def draw(self):
-        pygame.draw.line(self.game.screen, "yellow", (self.x * 100, self.y * 100),
-                        (self.x * 100 + WIDTH * math.cos(self.angle),
-                         self.y * 100 + WIDTH * math.sin(self.angle)), 2)
+        # pygame.draw.line(self.game.screen, "yellow", (self.x * 100, self.y * 100),
+        #                 (self.x * 100 + WIDTH * math.cos(self.angle),
+        #                  self.y * 100 + WIDTH * math.sin(self.angle)), 2)
         pygame.draw.circle(self.game.screen, "green", (self.x * 100, self.y * 100), 15)
 
     def update(self):

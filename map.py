@@ -1,14 +1,14 @@
 import pygame
 
-x = False
+_ = False
 mini_map = [
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    [1, x, x, x, x, x, x, x, x, x, 1],
-    [1, x, x, 1, x, x, 1, 1, x, 1, 1],
-    [1, x, 1, x, 1, x, 1, x, x, 1, 1],
-    [1, x, x, x, 1, x, x, x, x, x, 1],
-    [1, x, 1, x, 1, x, 1, 1, 1, x, 1],
-    [1, x, x, x, x, x, x, x, x, x, 1],
+    [1, 1, _, _, _, _, _, _, _, 1, 1],
+    [1, 1, 1, 1, 1, 1, _, 1, 1, 1, 1],
+    [1, _, 1, _, 1, _, _, _, _, _, 1],
+    [1, _, 1, _, 1, _, _, _, _, _, 1],
+    [1, _, 1, _, 1, _, 1, _, _, _, 1],
+    [1, _, _, _, _, _, 1, _, _, _, 1],
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 ]
 
@@ -27,5 +27,5 @@ class Map:
                     self.world_map[(i, j)] = value
 
     def draw(self):
-        [pygame.draw.rect(self.game.screen, "darkgrey", (pos[0] * 100, pos[1] * 100, 100, 100) , 2)
+        [pygame.draw.rect(self.game.screen, "darkgrey", (pos[0] * 100, pos[1] * 100, 100, 100), 2)
          for pos in self.world_map]

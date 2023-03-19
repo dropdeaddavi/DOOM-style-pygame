@@ -3,6 +3,10 @@ import sys
 from Settings import *
 from map import *
 from player import *
+from raycasting import *
+
+icon = pygame.image.load("gargoyle.png")
+pygame.display.set_icon(icon)
 
 class Game:
 
@@ -16,17 +20,19 @@ class Game:
     def newGame(self):
         self.map = Map(self)
         self.player = Player(self)
+        self.raycasting = RayCasting(self)
 
     def update(self):
         self.player.update()
+        self.raycasting.update()
         pygame.display.flip()
         self.delta_time = self.clock.tick(FPS)
-        pygame.display.set_caption("DOOM")
+        pygame.display.set_caption("DOOM-STYLE")
 
     def draw(self):
         self.screen.fill("black")
-        self.map.draw()
-        self.player.draw()
+        # self.map.draw()
+        # self.player.draw()
 
     def checkEvent(self):
         for event in pygame.event.get():
