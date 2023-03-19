@@ -1,7 +1,7 @@
 # Game settings
 
 RES = HEIGHT, WIDTH = 1100, 800
-FPS = 60
+FPS = 0
 
 PLAYER_POS = 1.5, 5
 PLAYER_ANGLE = 0
