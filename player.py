@@ -7,6 +7,7 @@ class Player:
         self.game = game
         self.x, self.y = PLAYER_POS
         self.angle = PLAYER_ANGLE
+        self.diag_move_correction = 1 / math.sqrt(2)
 
     def movement(self):
         sin_a = math.sin(self.angle)
@@ -17,18 +18,28 @@ class Player:
         speed_cos = speed * cos_a
 
         keys = pygame.key.get_pressed()
+        num_key_pressed = -1
         if keys[pygame.K_w]:
+            num_key_pressed += 1
             dx += speed_cos
             dy += speed_sin
         if keys[pygame.K_s]:
+            num_key_pressed += 1
             dx += -speed_cos
             dy += -speed_sin
         if keys[pygame.K_a]:
-            dx += speed_cos
-            dy += -speed_sin
+            num_key_pressed += 1
+            dx += speed_sin
+            dy += -speed_cos
         if keys[pygame.K_d]:
-            dx += -speed_cos
-            dy += speed_sin
+            num_key_pressed += 1
+            dx += -speed_sin
+            dy += speed_cos
+
+        # diagonal move correction
+        if num_key_pressed:
+            dx *= self.diag_move_correction
+            dy *= self.diag_move_correction
 
         self.checkWallCollision(dx, dy)
 
@@ -50,9 +61,9 @@ class Player:
 
 
     def draw(self):
-        # pygame.draw.line(self.game.screen, "yellow", (self.x * 100, self.y * 100),
-        #                 (self.x * 100 + WIDTH * math.cos(self.angle),
-        #                  self.y * 100 + WIDTH * math.sin(self.angle)), 2)
+        pygame.draw.line(self.game.screen, "yellow", (self.x * 100, self.y * 100),
+                        (self.x * 100 + WIDTH * math.cos(self.angle),
+                         self.y * 100 + WIDTH * math.sin(self.angle)), 2)
         pygame.draw.circle(self.game.screen, "green", (self.x * 100, self.y * 100), 15)
 
     def update(self):

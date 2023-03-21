@@ -3,6 +3,7 @@ import sys
 from Settings import *
 from map import *
 from player import *
+from object_renderer import *
 from raycasting import *
 
 icon = pygame.image.load("gargoyle.png")
@@ -20,6 +21,7 @@ class Game:
     def newGame(self):
         self.map = Map(self)
         self.player = Player(self)
+        self.object_renderer = ObjectRenderer(self)
         self.raycasting = RayCasting(self)
 
     def update(self):
@@ -31,6 +33,7 @@ class Game:
 
     def draw(self):
         self.screen.fill("black")
+        self.object_renderer.draw()
         # self.map.draw()
         # self.player.draw()
 
